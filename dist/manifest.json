@@ -21,7 +21,8 @@
       "persistent": true
     },
     "permissions": [
-      "https://*/*"
+      "https://*/*",
+      "activeTab"
     ],
     "content_security_policy": "default-src 'self';",
     "content_scripts": [
