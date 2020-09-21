@@ -1,16 +1,15 @@
 {
-    "name": "TS/R/WP Chrome Extension",
+    "name": "Asana ticket copy",
     "version": "0.0.1",
     "manifest_version": 2,
-    "description": "Boilerplate for a Chrome extension with TypeScript, React, and Webpack.",
-    "homepage_url": "https://duo.com/labs",
+    "description": "Copies Asana ticket description + URL into the clipboard",
     "icons": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     },
     "browser_action": {
-      "default_title": "TSRWPCX",
+      "default_title": "Asana ticket copy",
       "default_popup": "popup.html"
     },
     "default_locale": "en",
@@ -21,14 +20,14 @@
       "persistent": true
     },
     "permissions": [
-      "https://*/*",
+      "https://app.asana.com/*",
       "activeTab"
     ],
     "content_security_policy": "default-src 'self';",
     "content_scripts": [
       {
         "matches": [
-          "https://*/*"
+          "https://app.asana.com/*"
         ],
         "js": [
           "js/content.js"
@@ -36,4 +35,4 @@
       }
     ]
   }
-  
+
