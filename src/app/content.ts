@@ -9,9 +9,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
   if (request.cmd === COPY_TITLE_CMD) {
     const taskNameEl = document.querySelector('.SingleTaskTitleInput-taskName textarea');
+    const url = window.location.href;
 
     if (taskNameEl) {
-      return sendResponse({ title: taskNameEl.innerHTML });
+      return sendResponse({ url, title: taskNameEl.innerHTML });
     }
 
     return sendResponse({ error: 'Can\'t detect a task' });

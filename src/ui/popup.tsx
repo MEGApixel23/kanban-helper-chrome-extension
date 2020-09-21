@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { render } from 'react-dom'
 import { useEffect, useState } from 'react';
+import { copyToClipboard } from '../utils';
 import { COPY_TITLE_CMD } from '../constants/commands';
 
 // import "../styles/popup.css"
 
 const Hello = () => {
-  const [err, setErr] = useState();
-  const [title, setTitle] = useState();
+  const [err, setErr] = useState('');
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
     chrome.runtime.sendMessage({ cmd: COPY_TITLE_CMD },
@@ -16,8 +17,11 @@ const Hello = () => {
           setErr(response.error);
         }
 
-        if (response && response.title) {
-          setTitle(response.title);
+        if (response && response.title && response.url) {
+          const title = `${response.title} ${response.url}`;
+
+          copyToClipboard(title);
+          setTitle(`${title} has been copied to your clipboard!`);
         }
       });
   }, []);
